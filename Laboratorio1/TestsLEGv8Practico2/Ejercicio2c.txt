@@ -1,0 +1,17 @@
+	.text
+	.org 0x0000
+
+// Para testear, subir el tiempo del testbench a 1000ps y hacer los cambios necesarios en imem
+
+multiplicacion:
+    CBZ X17, done        // Si X17 es 0, termina el bucle
+    ADD X0, X0, X16    // X0 = X0 + X16, con X0=0 iniciado en regfile
+    SUB X17, X17, X1     // X17 = X17 - 1
+    CBZ XZR, multiplicacion   // Vuelve al inicio del bucle
+done:
+    // Almacena el resultado en la dirección de memoria 0
+    STUR X0, [X1, #0]      // Guarda el valor de X0 en la dirección 0 de memoria  
+infloop:
+	CBZ xzr, infloop
+
+
